@@ -12,6 +12,7 @@ void pattern_3();
 void pattern_4();
 void pattern_5();
 void pattern_6();
+void pattern_7();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main()
@@ -19,41 +20,52 @@ int main()
     int choice;  // Variable to store the user's choice of pattern
 
     // Display options to the user
-    printf("Enter 1 to print pattern number 1.\n");
+    printf("\nEnter 1 to print pattern number 1.\n");
     printf("Enter 2 to print pattern number 2.\n");
     printf("Enter 3 to print pattern number 3.\n");
     printf("Enter 4 to print pattern number 4.\n");
     printf("Enter 5 to print pattern number 5.\n");
-    printf("Enter 6 to print pattern number 6.\n\n");
-
+    printf("Enter 6 to print pattern number 6.\n");
+    printf("Enter 7 to print pattern number 7.\n\n");
+    printf("Enter -1 to end the program.\n");
+    
     // Prompt the user for their choice
     printf("Enter choice: ");
     scanf("%d", &choice);
-
-    // Use switch-case to call the appropriate pattern function based on user input
-    switch(choice)
-    {
-        case 1:
-            pattern_1();  // Call function to print pattern 1
-            break;
-        case 2:
-            pattern_2();  // Call function to print pattern 2
-            break;
-        case 3:
-            pattern_3();  // Call function to print pattern 3
-            break;
-        case 4:
-            pattern_4();  // Call function to print pattern 4
-            break;
-        case 5:
-            pattern_5();  // Call function to print pattern 5
-            break;
-        case 6:
-            pattern_6();  // Call function to print pattern 6
-            break;
-        default:
-            printf("Wrong Input.............!!!");  // Handle invalid choices
-            break;
+    
+    while (choice != -1) { // loop for multiple choices
+        
+        // Use switch-case to call the appropriate pattern function based on user input
+        switch(choice)
+        {
+            case 1:
+                pattern_1();  // Call function to print pattern 1
+                break;
+            case 2:
+                pattern_2();  // Call function to print pattern 2
+                break;
+            case 3:
+                pattern_3();  // Call function to print pattern 3
+                break;
+            case 4:
+                pattern_4();  // Call function to print pattern 4
+                break;
+            case 5:
+                pattern_5();  // Call function to print pattern 5
+                break;
+            case 6:
+                pattern_6();  // Call function to print pattern 6
+                break;
+            case 7:
+                pattern_7();
+                break;
+            default:
+                printf("Wrong Input.............!!!");  // Handle invalid choices
+                break;
+        }
+        // Prompt the user for their choice
+        printf("Enter another choice (-1 to end): ");
+        scanf("%d", &choice);
     }
     return 0;  // Indicate successful termination of the program
 }
@@ -239,6 +251,52 @@ void pattern_6()
         printf("\n");  // Move to the next line after each row
         start2++;  // Adjust start for next row
         stop2--;   // Adjust stop for next row
+    }
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void pattern_7()  
+{
+    // Pattern:
+    // 1 2 3 4 5 6  7 8 9 9 8 7  6 5 4 3 2 1
+    //  1 2 3 4 5    1 2 3 4 5    1 2 3 4 5
+    //   1 2 3 4      1 2 3 4      1 2 3 4
+    //    1 2 3        1 2 3        1 2 3
+    //     1 2          1 2          1 2
+    //      1            1            1
+    
+    // print first line
+    for (int i = 1; i <= 9; i++) {
+        printf("%d ", i);
+        if (i % 6 == 0) printf("  ");
+    }
+    for (int i = 9; i > 0; i--) {
+        printf("%d ", i);
+        if (i % 7 == 0) printf("  ");
+    }
+    
+    printf("\n");
+    int rows = 1, max = 5; // rows printed and numbers to print
+    
+    while (rows < 6) { // loop for 6 lines
+        
+        for (int col = 0; col < 4; col++) { // loop for the 3 colums
+            
+            printf("%*s", rows - 1, ""); // set the indentation that make it look like a piramid
+            
+            for (int num = 1; num <= max; num++) {// loop to print the numbers
+                printf(" %d", num);
+                
+                if (num % max == 0) { // print the spaces between the columns
+                    printf("%*s", rows + 3, "");
+                }
+                
+            }
+            
+        }
+        
+        rows++; // move to next row
+        max--; // make the next line have -1 number
+        printf("\n");
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
